@@ -48,7 +48,7 @@ class CompanyController extends Controller
             $registration->email                = $req->email;
             $registration->phone                = $req->phone;
             $registration->country              = $req->country;
-            $registration->timezone             = $req->timezone;
+            $registration->state                = $req->states;
             $registration->dateformat           = $req->dateformat;
             $registration->verifcationtoken     = $verifcationtoken;
             $registration->verificationstatus   = 'no';
@@ -286,7 +286,8 @@ class CompanyController extends Controller
         if ($empdata) {
             $formdetails = $empdata->addempdeatils;
         } else {
-            $formdetails = false;
+            $empdata = EmployeeSettingMaster::where('companyid', 'default')->first();
+            $formdetails = $empdata->addempdeatils;
         }
         $response = [
             'success' => 'success',

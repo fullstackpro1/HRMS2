@@ -12,6 +12,6 @@ class CompanyDetails extends Model
     protected $collection = 'company_details';
 
     protected $fillable = [
-        'id', 'company_id', 'uname', 'orgname', 'email', 'phone', 'country', 'timezone','ip_address'
+        'id', 'company_id', 'uname', 'orgname', 'email', 'phone', 'country', 'state','ip_address'
     ];
 }
