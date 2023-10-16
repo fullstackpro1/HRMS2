@@ -66,6 +66,7 @@ Route::post("company-details-set-as-default",[CompanyController::class,'companyD
 //masters
 Route::get("country-list",[CompanyMasterController::class,'getCountryList']);
 Route::post("statelist",[CompanyMasterController::class,'getStateList']);
+//
 Route::post("shift-list",[CompanyMasterController::class,'getCompanyWiseShiftList']);
 Route::post("roster-list",[CompanyMasterController::class,'getCompanyWiseRosterList']);
 Route::post("country-state-list",[CompanyMasterController::class,'getCountryStateList']);
