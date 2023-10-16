@@ -65,6 +65,8 @@ Route::post("delete-leave",[LeaveController::class,'deleteLeave']);
 Route::post("company-details-set-as-default",[CompanyController::class,'companyDetailsSetAsDefault']);
 //masters
 Route::get("country-list",[CompanyMasterController::class,'getCountryList']);
+Route::post("statelist",[CompanyMasterController::class,'getStateList']);
+//
 Route::post("shift-list",[CompanyMasterController::class,'getCompanyWiseShiftList']);
 Route::post("roster-list",[CompanyMasterController::class,'getCompanyWiseRosterList']);
 Route::post("country-state-list",[CompanyMasterController::class,'getCountryStateList']);

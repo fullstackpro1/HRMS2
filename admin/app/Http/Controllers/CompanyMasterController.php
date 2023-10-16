@@ -103,6 +103,17 @@ class CompanyMasterController extends Controller
         return response()->json($response);
     }
 
+    public function getStateList(Request $req){
+
+        $stateList = CountryState::where('iso2',$req->country)->get();
+        $response = [
+            'success'       => 'success',
+            'stateList'=> $stateList
+        ];
+
+        return response()->json($response);
+    }
+
     //function
 
 }

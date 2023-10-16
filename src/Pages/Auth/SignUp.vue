@@ -58,7 +58,7 @@
 
                     <div class="">
                         <label class="input-label">Country <span class="text-red-500">*</span></label>
-                        <select class="form-control-select" v-model="state3.country">
+                        <select class="form-control-select" v-model="state3.country" @change="getCityList">
                             <option class="text-neutral-400">Select Country</option>
                             <option :value="country.code" v-for="country in countryList" :key="country._id" >{{ country.name }}</option>
                         </select>
@@ -68,15 +68,13 @@
                     </div>
 
                     <div class="">
-                        <label class="input-label">Timezone <span class="text-red-500">*</span></label>
-                        <select class="form-control-select" v-model="state3.timezone">
-                            <option class="text-neutral-400">Select Timezone</option>
-                            <option>GMT+5.30</option>
-                            <option>GMT-5.30</option>
-                            <option>GMT-5.30</option>
+                        <label class="input-label">State <span class="text-red-500">*</span></label>
+                        <select class="form-control-select" v-model="state3.states">
+                            <option class="text-neutral-400">Select State Name</option>
+                            <option :value="state.state_code" v-for="state in stateList" :key="state.id" >{{ state.name }}</option>
                         </select>
-                        <span v-if="v3$.timezone.$error" class="error">
-                            {{ v3$.timezone.$errors[0].$message }}
+                        <span v-if="v3$.states.$error" class="error">
+                            {{ v3$.states.$errors[0].$message }}
                         </span>
                     </div>
 
@@ -142,6 +140,7 @@
               dateformat:'',
               password:'',
               confirmpassword:'',
+              states:''
 
           })
     
@@ -152,7 +151,8 @@
                   email: { required, email },
                   phone: { required, minLength: minLength(10), maxLength: maxLength(12) },
                   country:{ required },
-                  timezone:{ required },
+                //   timezone:{ required },
+                  states:{ required },
                 //   dateformat:{ required },
                   password:{ required, minLength: minLength(8)},
                   confirmpassword:{ required, sameAsPassword: sameAs(state3.password),},
@@ -180,6 +180,7 @@
                 storage: storage,
                 btnDisable:false,
                 countryList:[],
+                stateList:[]
             }
         },
         created() {
@@ -194,6 +195,13 @@
                     console.log("COUNTRY LIST:: ",response.data);
                 })
             },
+            async getCityList(){
+                await axios.post(BASE_URL + '/statelist',{'country':this.state3.country})
+                .then((response)=>{
+                    this.stateList =  response.data.stateList[0].states;
+                    console.log("statelist:: ",this.stateList);
+                })
+            },
             async onSubmit() {
                 this.btnLoader = true;
                 // console.log("this.state3.uname",this.state3.uname);
@@ -206,7 +214,7 @@
                         "email": this.state3.email,
                         "phone": this.state3.phone,
                         "country": this.state3.country,
-                        "timezone": this.state3.timezone,
+                        "states": this.state3.states,
                         "password":this.state3.password,
                         "ipAddress": this.storage.ipAddress
                     };
