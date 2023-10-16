@@ -90,6 +90,48 @@
                         </router-link>
                     </li>
 
+                    
+                    <li class="pt-3">
+                        <button class="flex w-full flex-nowrap text-white/60 flex-1 p-1.5 items-center hover:text-white transition-all" @click="HandelSecondDropdown('MasterSettings')">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                                <path fill-rule="evenodd" d="M14.5 10a4.5 4.5 0 004.284-5.882c-.105-.324-.51-.391-.752-.15L15.34 6.66a.454.454 0 01-.493.11 3.01 3.01 0 01-1.618-1.616.455.455 0 01.11-.494l2.694-2.692c.24-.241.174-.647-.15-.752a4.5 4.5 0 00-5.873 4.575c.055.873-.128 1.808-.8 2.368l-7.23 6.024a2.724 2.724 0 103.837 3.837l6.024-7.23c.56-.672 1.495-.855 2.368-.8.096.007.193.01.291.01zM5 16a1 1 0 11-2 0 1 1 0 012 0z" clip-rule="evenodd" />
+                                <path d="M14.5 11.5c.173 0 .345-.007.514-.022l3.754 3.754a2.5 2.5 0 01-3.536 3.536l-4.41-4.41 2.172-2.607c.052-.063.147-.138.342-.196.202-.06.469-.087.777-.067.128.008.257.012.387.012zM6 4.586l2.33 2.33a.452.452 0 01-.08.09L6.8 8.214 4.586 6H3.309a.5.5 0 01-.447-.276l-1.7-3.402a.5.5 0 01.093-.577l.49-.49a.5.5 0 01.577-.094l3.402 1.7A.5.5 0 016 3.31v1.277z" />
+                            </svg>
+
+                            <span class="pl-5">
+                                Masters Settings
+                            </span>
+
+                            <span class="ml-auto">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                                    <path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z" clip-rule="evenodd" />
+                                </svg>
+                            </span>
+                        </button>
+                        <transition
+                            enter-active-class="transition duration-100 ease-out"
+                            enter-from-class="transform scale-95 opacity-0"
+                            enter-to-class="transform scale-100 opacity-100"
+                            leave-active-class="transition duration-75 ease-in"
+                            leave-from-class="transform scale-100 opacity-100"
+                            leave-to-class="transform scale-95 opacity-0"
+                        >
+                            <ul class="pl-10" v-if="this.secondSideBarDrop === 'MasterSettings'">
+                                <li>
+                                    <router-link class="flex text-sm flex-nowrap text-white/60 flex-1 p-1.5 items-center hover:text-white transition-all" to="/country-list" @click="this.isSidebar = true">
+                                        <span>
+                                            Country
+                                        </span>
+                                    </router-link>
+                                    <router-link class="flex text-sm flex-nowrap text-white/60 flex-1 p-1.5 items-center hover:text-white transition-all" to="/state-list" @click="this.isSidebar = true">
+                                        <span>
+                                            State
+                                        </span>
+                                    </router-link>
+                                </li>
+                            </ul>
+                        </transition>
+                    </li>
                     <li class="pt-3">
                         <button class="flex w-full flex-nowrap text-white/60 flex-1 p-1.5 items-center hover:text-white transition-all" @click="HandelFirstDropdown('Settings')">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
@@ -172,17 +214,17 @@
                             </ul>
                         </transition>
                     </li>
-
                     <li class="pt-3">
                         <router-link class="flex flex-nowrap text-white/60 flex-1 p-1.5 items-center hover:text-white transition-all" to="/dashboard/dc" @click="this.isSidebar = false">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 ">
-                                <path d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z" />
-                                <path d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z" />
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                                <path fill-rule="evenodd" d="M3 4.25A2.25 2.25 0 015.25 2h5.5A2.25 2.25 0 0113 4.25v2a.75.75 0 01-1.5 0v-2a.75.75 0 00-.75-.75h-5.5a.75.75 0 00-.75.75v11.5c0 .414.336.75.75.75h5.5a.75.75 0 00.75-.75v-2a.75.75 0 011.5 0v2A2.25 2.25 0 0110.75 18h-5.5A2.25 2.25 0 013 15.75V4.25z" clip-rule="evenodd" />
+                                <path fill-rule="evenodd" d="M6 10a.75.75 0 01.75-.75h9.546l-1.048-.943a.75.75 0 111.004-1.114l2.5 2.25a.75.75 0 010 1.114l-2.5 2.25a.75.75 0 11-1.004-1.114l1.048-.943H6.75A.75.75 0 016 10z" clip-rule="evenodd" />
                             </svg>
+
+
                             <span class="pl-5">
-                                Dashboard
+                                Log Out
                             </span>
-                            
                         </router-link>
                     </li>
                 </ul>
@@ -216,6 +258,7 @@ export default {
     return{
         isSidebar: false,
         firstSideBarDrop: '',
+        secondSideBarDrop: '',
     }
   }, 
 
@@ -227,7 +270,14 @@ export default {
             this.firstSideBarDrop = val;
         }
         this.isSidebar = true;
-        
+    },
+    HandelSecondDropdown(val){
+        if(val === this.secondSideBarDrop){
+            this.secondSideBarDrop = '';
+        } else {
+            this.secondSideBarDrop = val;
+        }
+        this.isSidebar = true;
     }
   }
 

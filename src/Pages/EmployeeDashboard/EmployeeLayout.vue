@@ -118,54 +118,7 @@
                                 <li>
                                     <router-link class="flex text-sm flex-nowrap text-white/60 flex-1 p-1.5 items-center hover:text-white transition-all" to="/dashboard/dc" @click="this.isSidebar = true">
                                         <span>
-                                            General Settings
-                                        </span>
-                                    </router-link>
-                                </li>
-
-                                <li>
-                                    <router-link class="flex text-sm flex-nowrap text-white/60 flex-1 p-1.5 items-center hover:text-white transition-all" to="/dashboard/dc" @click="this.isSidebar = true">
-                                        <span>
-                                            Organization Settings
-                                        </span>
-                                    </router-link>
-                                </li>
-
-                                <li>
-                                    <router-link class="flex text-sm flex-nowrap text-white/60 flex-1 p-1.5 items-center hover:text-white transition-all" to="/dashboard/dc" @click="this.isSidebar = true">
-                                        <span>
-                                            Role Allocation Settings
-                                        </span>
-                                    </router-link>
-                                </li>
-
-                                <li>
-                                    <router-link class="flex text-sm flex-nowrap text-white/60 flex-1 p-1.5 items-center hover:text-white transition-all" to="/dashboard/dc" @click="this.isSidebar = true">
-                                        <span>
-                                            Attendance Settings
-                                        </span>
-                                    </router-link>
-                                </li>
-
-                                <li>
-                                    <router-link class="flex text-sm flex-nowrap text-white/60 flex-1 p-1.5 items-center hover:text-white transition-all" to="/dashboard/dc" @click="this.isSidebar = true">
-                                        <span>
-                                            Leave Settings
-                                        </span>
-                                    </router-link>
-                                </li>
-
-                                <li>
-                                    <router-link class="flex text-sm flex-nowrap text-white/60 flex-1 p-1.5 items-center hover:text-white transition-all" to="/dashboard/dc" @click="this.isSidebar = true">
-                                        <span>
-                                            Payroll Settings
-                                        </span>
-                                    </router-link>
-                                </li>
-                                <li>
-                                    <router-link class="flex text-sm flex-nowrap text-white/60 flex-1 p-1.5 items-center hover:text-white transition-all" to="/addemployeemaster" @click="this.isSidebar = true">
-                                        <span>
-                                            Employee Form Settings
+                                            Profile Settings
                                         </span>
                                     </router-link>
                                 </li>
@@ -173,7 +126,7 @@
                         </transition>
                     </li>
 
-                    <li class="pt-3">
+                    <!-- <li class="pt-3">
                         <router-link class="flex flex-nowrap text-white/60 flex-1 p-1.5 items-center hover:text-white transition-all" to="/dashboard/dc" @click="this.isSidebar = false">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 ">
                                 <path d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z" />
@@ -184,7 +137,7 @@
                             </span>
                             
                         </router-link>
-                    </li>
+                    </li> -->
                 </ul>
             </nav>
         </div>

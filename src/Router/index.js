@@ -8,6 +8,10 @@ import Addnewemployee from "../Pages/AdminDashboard/Addemployee.vue";
 import VerifyEmail from "../Pages/Auth/verifyemail.vue";
 import AddEmployeeMaster from "../Pages/AdminDashboard/AddEmployeeMaster.vue";
 import EmployeeDashboard from "../Pages/AdminDashboard/EmployeeDashboard.vue";
+import CountryList from "../Pages/Masters/CountryList.vue";
+import StateList from "../Pages/Masters/StateList.vue";
+import AddCountry from "../Pages/Masters/AddCountry.vue";
+import AddState from "../Pages/Masters/AddState.vue";
 
 
 const routes = [
@@ -57,8 +61,26 @@ const routes = [
         component: EmployeeDashboard,
         path: "/employee-dashboard/:id",
     },
-    
-    
+    {
+        name: "CountryList",
+        component: CountryList,
+        path: "/country-list",
+    },
+    {
+        name: "StateList",
+        component: StateList,
+        path: "/state-list",
+    },
+    {
+        name: "AddCountry",
+        component: AddCountry,
+        path: "/add-country",
+    },
+    {
+        name: "AddState",
+        component: AddState,
+        path: "/add-state",
+    },
 ]
 
 
