@@ -498,7 +498,8 @@
         },
         created(){
             console.log("COMPANY DETAILS: ",this.storage.companyDetails);
-            this.companyName = this.storage.companyDetails.fname;
+            //this.companyName = this.storage.companyDetails.fname;
+            this.companyName = this.storage.companyDetails.orgname;
         },
         computed:{
             formattedDate(){

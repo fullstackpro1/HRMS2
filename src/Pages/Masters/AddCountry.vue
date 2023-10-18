@@ -15,14 +15,14 @@
                                         <!-- <p>{{ item }}</p> -->
                                         <div class="addNewFirst adnright" >
                                         <!-- <div class="addNewFirst adnright" v-if="item.name == 'First Name' && item.status == true"> -->
-                                            <label>First Name:</label>
-                                            <input class="addNewInput" type="text"  placeholder="First Name">
+                                            <label>Country Name:</label>
+                                            <input class="addNewInput" type="text" v-model="countryName" placeholder="Country Name">
                                         </div>
                                         <div class="addNewFirst adnright" >
-                                            <label>Last Name:</label>
-                                            <input class="addNewInput" type="text"  placeholder="Last Name">
+                                            <label>Country Code:</label>
+                                            <input class="addNewInput" type="text" v-model="countryCode" placeholder="Country Code">
                                         </div>
-                                        <div class="addNewFirst adnleft" >
+                                        <!-- <div class="addNewFirst adnleft" >
                                             <label>Gender:</label>
                                             <select >
                                                 <option value="undefined" disabled>-Select One-</option>
@@ -30,24 +30,28 @@
                                                 <option value="Female">Female</option>
                                                 <option value="Other">Other</option>
                                             </select>
-                                        </div>
+                                        </div> -->
 
                                     </div>
-                                   
+                                    
+                                </div>
+                                <div class="pt-4 text-right">
+                                    <button type="submit" class=" btn-primary-light flex items-center">
+                                        <span class="pr-2">
+                                            Submit 
+                                        </span>
+                                    </button>
                                 </div>
                             </form>
                         </div>
 
-                        <div class="pt-4 text-right">
-                            <button class=" btn-primary-light flex items-center">
+                        <!-- <div class="pt-4 text-right">
+                            <button type="submit" class=" btn-primary-light flex items-center">
                                 <span class="pr-2">
                                     Show More
                                 </span>
-                                <span>
-                                    <ChevronRightIcon class="w-3 h-3"/>
-                                </span>
                             </button>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -61,7 +65,7 @@
     import RightSideBar from '../../components/RightSideBar.vue';
     // import { ArrowDownTrayIcon} from '@heroicons/vue/24/solid';
     import axios from "axios";
-    //import { BASE_URL } from "../config";
+    import { BASE_URL } from "../../config";
 
 
     export default {
@@ -73,29 +77,26 @@
         },
         data() {
             return {
-                toDayDate: new Date(),
-                selectedDate: new Date(),
-                companyName:''
+                countryName:'',
+                countryCode:''
             }
         },
         created(){
         },
-        computed:{
-        },
-        mounted() {
-            // Make a GET request to the ipify API to retrieve the client's public IP address
-            axios.get('https://api.ipify.org?format=json')
-            .then(response => {
-                //this.ipAddress = response.data.ip;
-                //console.log("IP:",this.ipAddress);
-                this.storage.set("ipAddress", response.data.ip);
-            })
-            .catch(error => {
-                console.error('Error fetching IP address:', error);
-            });
-        },
-        
-
+        methods:{
+            async submitForm() {
+                const formData = {
+                    "countryName":this.countryName,
+                    "countryCode":this.countryCode
+                };
+                await axios.post(BASE_URL + '/add-country',formData)
+                .then((response)=>{
+                    //this.stateList =  response.data.statelist;
+                    console.log("COUNTRY DATA:: ",response.data);
+                    window.location.href = "country-list";
+                })
+            },
+        }
     }
 
 

@@ -250,11 +250,13 @@
                             // this.storage.set("company_id", response.data.companyDetails._id);
                             // this.storage.set("ipAddress", this.storage.ipAddress);
                             if(response.data.type=='user'){
+                                this.storage.set("loginType", 'user');
                                 this.storage.set("employeeDetails", response.data.employeeDetails);
                                 this.storage.set("employee_id", response.data.employeeDetails._id);
                                 this.storage.set("ipAddress", this.storage.ipAddress);
                                 window.location.href = "employee-dashboard/"+response.data.employeeDetails._id;
                             } else {
+                                this.storage.set("loginType", 'company');
                                 this.storage.set("companyDetails", response.data.companyDetails);
                                 this.storage.set("company_id", response.data.companyDetails._id);
                                 this.storage.set("ipAddress", this.storage.ipAddress);

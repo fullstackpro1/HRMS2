@@ -52,6 +52,76 @@ class CompanyMasterController extends Controller
         return response()->json($response);
     }
 
+    public function addCountryDetails(Request $req){
+        //$countryStateList = Country::where('iso2',$req->code)->first();
+
+        $countryName         = $req->countryName;
+        $countryCode         = $req->countryCode;
+
+        if($countryName && $countryCode){
+            $insert              = new Country;
+            $insert->name        = $countryName;
+            $insert->code        = $countryCode;
+            $insertedData        = $insert->save();
+        }
+
+        if($insertedData){
+            $success    = 'success';
+            $messages   = 'Created successfully';
+        } else {
+            $success    = 'failed';
+            $messages   = 'somthing went wrong';
+        }
+
+        $response = [
+            'success'       => $success,
+            'message'       => $messages
+            //'data'       => $req->departmentArray
+        ];
+
+        return response()->json($response);
+    }
+
+    public function addCountryWiseState(Request $req){
+
+        $countryName         = $req->countryName;
+        $countryCode         = $req->countryCode;
+
+        if($countryName){
+            $insert              = new Country;
+            $insert->name        = $countryName;
+            $insert->code        = $countryCode;
+            $insertedData        = $insert->save();
+        }
+
+        if($insertedData){
+            $success    = 'success';
+            $messages   = 'Created successfully';
+        } else {
+            $success    = 'failed';
+            $messages   = 'somthing went wrong';
+        }
+
+        $response = [
+            'success'       => $success,
+            'message'       => $messages
+            //'data'       => $req->departmentArray
+        ];
+
+        return response()->json($response);
+    }
+
+    public function getStateList(){
+
+        $statelist = CountryState::get();
+        $response = [
+            'success'       => 'success',
+            'statelist'     => $statelist
+        ];
+
+        return response()->json($response);
+    }
+
     public function getCountryStateList(Request $req){
 
         $countryStateList = CountryState::where('iso2',$req->code)->first();
@@ -103,16 +173,16 @@ class CompanyMasterController extends Controller
         return response()->json($response);
     }
 
-    public function getStateList(Request $req){
+    // public function getStateList(Request $req){
 
-        $stateList = CountryState::where('iso2',$req->country)->get();
-        $response = [
-            'success'       => 'success',
-            'stateList'=> $stateList
-        ];
+    //     $stateList = CountryState::where('iso2',$req->country)->get();
+    //     $response = [
+    //         'success'       => 'success',
+    //         'stateList'=> $stateList
+    //     ];
 
-        return response()->json($response);
-    }
+    //     return response()->json($response);
+    // }
 
     //function
 

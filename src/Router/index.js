@@ -12,6 +12,10 @@ import CountryList from "../Pages/Masters/CountryList.vue";
 import StateList from "../Pages/Masters/StateList.vue";
 import AddCountry from "../Pages/Masters/AddCountry.vue";
 import AddState from "../Pages/Masters/AddState.vue";
+import DepartmentList from "../Pages/Masters/DepartmentList.vue";
+import DesignationList from "../Pages/Masters/DesignationList.vue";
+import ReportingManagerList from "../Pages/Masters/ReportingManagerList.vue";
+import EducationList from "../Pages/Masters/EducationList.vue";
 
 
 const routes = [
@@ -80,6 +84,26 @@ const routes = [
         name: "AddState",
         component: AddState,
         path: "/add-state",
+    },
+    {
+        name: "DepartmentList",
+        component: DepartmentList,
+        path: "/department-list",
+    },
+    {
+        name: "DesignationList",
+        component: DesignationList,
+        path: "/designation-list",
+    },
+    {
+        name: "ReportingManagerList",
+        component: ReportingManagerList,
+        path: "/reporting-manager-list",
+    },
+    {
+        name: "EducationList",
+        component: EducationList,
+        path: "/education-list",
     },
 ]
 

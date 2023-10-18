@@ -15,30 +15,33 @@
                                         <!-- <p>{{ item }}</p> -->
                                         <div class="addNewFirst adnright" >
                                         <!-- <div class="addNewFirst adnright" v-if="item.name == 'First Name' && item.status == true"> -->
-                                            <label>First Name:</label>
-                                            <input class="addNewInput" type="text"  placeholder="First Name">
-                                        </div>
-                                        <div class="addNewFirst adnright" >
-                                            <label>Last Name:</label>
-                                            <input class="addNewInput" type="text"  placeholder="Last Name">
-                                        </div>
-                                        <div class="addNewFirst adnleft" >
-                                            <label>Gender:</label>
-                                            <select >
+                                            <label>Country Name:</label>
+                                            <select v-model="countryName">
                                                 <option value="undefined" disabled>-Select One-</option>
-                                                <option value="Male">Male</option>
-                                                <option value="Female">Female</option>
-                                                <option value="Other">Other</option>
+                                                <option :value="country.code" v-for="country in countryList" :key="country._id" >{{ country.name }}</option>
                                             </select>
                                         </div>
-
+                                        <div class="addNewFirst adnright" >
+                                            <label>State Name:</label>
+                                            <input class="addNewInput" type="text" v-model="stateName" placeholder="State Name">
+                                        </div>
+                                        <div class="addNewFirst adnright" >
+                                            <label>State Code:</label>
+                                            <input class="addNewInput" type="text" v-model="stateCode" placeholder="State Code">
+                                        </div>
                                     </div>
-                                   
+                                </div>
+                                <div class="pt-4 text-right">
+                                    <button type="submit" class=" btn-primary-light flex items-center">
+                                        <span class="pr-2">
+                                            Submit 
+                                        </span>
+                                    </button>
                                 </div>
                             </form>
                         </div>
 
-                        <div class="pt-4 text-right">
+                        <!-- <div class="pt-4 text-right">
                             <button class=" btn-primary-light flex items-center">
                                 <span class="pr-2">
                                     Show More
@@ -47,7 +50,7 @@
                                     <ChevronRightIcon class="w-3 h-3"/>
                                 </span>
                             </button>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -61,7 +64,7 @@
     import RightSideBar from '../../components/RightSideBar.vue';
     // import { ArrowDownTrayIcon} from '@heroicons/vue/24/solid';
     import axios from "axios";
-    //import { BASE_URL } from "../config";
+    import { BASE_URL } from "../../config";
 
 
     export default {
@@ -73,29 +76,37 @@
         },
         data() {
             return {
-                toDayDate: new Date(),
-                selectedDate: new Date(),
-                companyName:''
+                countryList:[],
+                countryName:'',
+                stateName:'',
+                stateCode:'',
             }
         },
         created(){
+            this.getCountryList();
         },
-        computed:{
-        },
-        mounted() {
-            // Make a GET request to the ipify API to retrieve the client's public IP address
-            axios.get('https://api.ipify.org?format=json')
-            .then(response => {
-                //this.ipAddress = response.data.ip;
-                //console.log("IP:",this.ipAddress);
-                this.storage.set("ipAddress", response.data.ip);
-            })
-            .catch(error => {
-                console.error('Error fetching IP address:', error);
-            });
-        },
-        
-
+        methods:{
+            async getCountryList(){
+                await axios.get(BASE_URL + '/country-list')
+                .then((response)=>{
+                    this.countryList =  response.data.countryList;
+                    console.log("COUNTRY LIST:: ",response.data);
+                })
+            },
+            async submitForm() {
+                const formData = {
+                    "countryName":this.countryName,
+                    "StateName":this.StateName,
+                    "StateCode":this.StateCode
+                };
+                await axios.post(BASE_URL + '/add-state',formData)
+                .then((response)=>{
+                    //this.stateList =  response.data.statelist;
+                    console.log("STATE DATA:: ",response.data);
+                    window.location.href = "state-list";
+                })
+            },
+        }
     }
 
 

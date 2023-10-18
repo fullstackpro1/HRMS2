@@ -65,7 +65,12 @@ Route::post("delete-leave",[LeaveController::class,'deleteLeave']);
 Route::post("company-details-set-as-default",[CompanyController::class,'companyDetailsSetAsDefault']);
 //masters
 Route::get("country-list",[CompanyMasterController::class,'getCountryList']);
-Route::post("statelist",[CompanyMasterController::class,'getStateList']);
+Route::get("cState-list",[CompanyMasterController::class,'getStateList']);
+Route::post("add-country",[CompanyMasterController::class,'addCountryDetails']);
+Route::post("add-state",[CompanyMasterController::class,'addCountryWiseState']);
+
+// Route::post("education-list",[CompanyMasterController::class,'getEducationMasterList']);
+// Route::post("statelist",[CompanyMasterController::class,'getStateList']);
 //
 Route::post("shift-list",[CompanyMasterController::class,'getCompanyWiseShiftList']);
 Route::post("roster-list",[CompanyMasterController::class,'getCompanyWiseRosterList']);

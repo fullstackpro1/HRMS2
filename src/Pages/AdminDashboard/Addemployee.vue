@@ -1,7 +1,7 @@
 <template>
     <AdminLayout>
         <section class="grid grid-cols-7">
-            <div class="col-span-7 py-2 px-10">
+            <div class="col-span-5 py-2 px-10">
                 <div class=" pt-10" >
                     <div class="flex justify-between items-end pb-8 pt-12">
                         <div>
@@ -237,10 +237,12 @@
                     </form>
                 </div>
             </div>
+            <RightSideBar/>
         </section>
     </AdminLayout>
 </template>
 <script>
+    import RightSideBar from '../../components/RightSideBar.vue'
     import AdminLayout from './AdminLayout.vue';
     // import AdminSettingModal from '../../components/AdminSettingModal.vue';
     // import moment from 'moment';
@@ -265,7 +267,8 @@
         name: 'Add-new-employee',
         components:{
             AdminLayout,
-            Datepicker
+            Datepicker,
+            RightSideBar
         },
         setup() {
             const state3 = reactive({

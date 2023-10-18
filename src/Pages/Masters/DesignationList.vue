@@ -5,7 +5,7 @@
                 <div class="mt-12">
                     <div class="border rounded-lg py-7 px-8">
                         <div class="flex justify-between">
-                            <p class="font-semibold text-xl text-neutral-800">Country List</p>
+                            <p class="font-semibold text-xl text-neutral-800">Designation List</p>
                             <div class="flex items-center">
                                 <!-- <p class="text-sm">Status:</p> -->
                                 <!-- <div class="w-28 ml-3">
@@ -20,17 +20,17 @@
                                     </span>
                                 </button> -->
                                
-                                <!-- <button class="ml-3 btn-primary-light flex items-center"> -->
+                                <button class="ml-3 btn-primary-light flex items-center">
                                     <!-- <span>
                                         <ArrowDownTrayIcon class="w-4 h-4"/>
                                     </span> -->
-                                    <!-- <router-link to="/add-country" @click="this.isSidebar = true">
+                                    <router-link to="/add-designation" @click="this.isSidebar = true">
                                         <span class="pl-2">
-                                            Add Country
+                                            Add Designation
                                         </span>
-                                    </router-link> -->
+                                    </router-link>
                                     
-                                <!-- </button> -->
+                                </button>
                             </div>
                         </div>
                         <div class=" overflow-x-auto sm:rounded-lg pt-5">
@@ -41,10 +41,10 @@
                                             ID
                                         </th>
                                         <th scope="col" class="px-6 py-3 font-semibold">
-                                            Country Name
+                                            Department Name
                                         </th>
                                         <th scope="col" class="px-6 py-3 font-semibold">
-                                            Country Code
+                                            Designation Name
                                         </th>
                                         <!-- <th scope="col" class="px-6 py-3 font-semibold">
                                             Status
@@ -55,15 +55,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="(country,index) in countryList" :key="country._id" class="bg-white border-b">
+                                    <tr v-for="(designation,index) in designationList" :key="designation._id" class="bg-white border-b">
                                         <td scope="row" class="px-6 py-4 font-medium text-neutral-700 whitespace-nowrap">
                                             #{{ index+1 }}
                                         </td>
                                         <td class="px-6 py-4">
-                                            <div class="flex items-center">{{ country.name }}</div>
+                                            <div class="flex items-center">{{ designation.department.name }}</div>
                                         </td>
                                         <td class="px-6 py-4">
-                                            <div class="flex items-center">{{ country.code }}</div>
+                                            <div class="flex items-center">{{ designation.name }}</div>
                                         </td>
                                         <!-- <td class="px-6 py-4">
                                             {{ country.status }}
@@ -102,7 +102,10 @@
     // import { ArrowDownTrayIcon} from '@heroicons/vue/24/solid';
     import axios from "axios";
     import { BASE_URL } from "../../config";
+    import { createLocal } from 'the-storages';
 
+    const mirror = createLocal();
+    const storage = mirror._prx;
 
     export default {
         name: 'CountryList',
@@ -114,21 +117,22 @@
         },
         data() {
             return {
-                countryList: [],
+                storage:storage,
+                designationList: [],
             }
         },
         created(){
-            this.getCountryList();
+            this.getDesignationList();
         },
         methods:{
-            async getCountryList() {
-                // const formData = {
-                //     "company_id":this.storage.companyDetails._id
-                // };
-                await axios.get(BASE_URL + '/country-list')
+            async getDesignationList() {
+                const formData = {
+                    "company_id":this.storage.companyDetails._id
+                };
+                await axios.post(BASE_URL + '/designation-list2',formData)
                 .then((response)=>{
-                    this.countryList =  response.data.countryList;
-                    console.log("COUNTRY LIST:: ",response.data);
+                    this.designationList =  response.data.designationList;
+                    console.log("DESIGNATION LIST:: ",response.data);
                 })
             },
         }
