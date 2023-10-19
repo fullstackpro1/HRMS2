@@ -76,12 +76,19 @@ Route::post("shift-list",[CompanyMasterController::class,'getCompanyWiseShiftLis
 Route::post("roster-list",[CompanyMasterController::class,'getCompanyWiseRosterList']);
 Route::post("country-state-list",[CompanyMasterController::class,'getCountryStateList']);
 Route::post("reporting-manager-list",[CompanyMasterController::class,'getReportingManagerMasterList']);
+Route::post("add-reporting-manager",[CompanyMasterController::class,'addReportingManager']);
+Route::put("edit-reporting-manager",[CompanyMasterController::class,'editReportingManager']);
+Route::post("delete-reporting-manager",[CompanyMasterController::class,'deleteReportingManager']);
 Route::post("education-list",[CompanyMasterController::class,'getEducationMasterList']);
+Route::post("add-education",[CompanyMasterController::class,'addEducation']);
+Route::put("edit-education",[CompanyMasterController::class,'editEducation']);
+Route::post("delete-education",[CompanyMasterController::class,'deleteEducation']);
 
 //department
 Route::get("department-list",[CompanyMasterController::class,'getDepartmentList']);
 Route::post("department-list2",[CompanyDepartmentController::class,'getDepartmentList2']);
 Route::post("add-department",[CompanyDepartmentController::class,'addDepartment']);
+Route::post("add-department2",[CompanyDepartmentController::class,'addDepartment2']);
 Route::put("edit-department",[CompanyDepartmentController::class,'editDepartment']);
 Route::post("delete-department",[CompanyDepartmentController::class,'deleteDepartment']);
 
@@ -89,6 +96,7 @@ Route::post("delete-department",[CompanyDepartmentController::class,'deleteDepar
 Route::get("designation-list",[CompanyMasterController::class,'getDesignationList']);
 Route::post("designation-list2",[CompanyDesignationController::class,'getDesignationList2']);
 Route::post("add-designation",[CompanyDesignationController::class,'addDesignation']);
+Route::post("add-designation2",[CompanyDesignationController::class,'addDesignation2']);
 Route::put("edit-designation",[CompanyDesignationController::class,'editDesignation']);
 Route::post("delete-designation",[CompanyDesignationController::class,'deleteDesignation']);
 

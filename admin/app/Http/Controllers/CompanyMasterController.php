@@ -163,11 +163,159 @@ class CompanyMasterController extends Controller
         return response()->json($response);
     }
 
+    public function addReportingManager(Request $req){
+
+        $reportingManagerName         = $req->reportingManagerName;
+        if($reportingManagerName){
+            $insert              = new ReportingManagerMaster;
+            $insert->company_id  = $req->company_id;
+            $insert->name        = $reportingManagerName;
+            $insert->status      = 'A';
+            $insert->session     = '';
+            $insert->ip_address  = $req->ipAddress;
+            $insertedData        = $insert->save();
+        }
+
+        if($insertedData){
+            $success    = 'success';
+            $messages   = 'Created successfully';
+        } else {
+            $success    = 'failed';
+            $messages   = 'somthing went wrong';
+        }
+
+        $response = [
+            'success'       => $success,
+            'message'       => $messages
+            //'data'       => $req->departmentArray
+        ];
+
+        return response()->json($response);
+    }
+
+    public function editReportingManager(Request $req){
+        $updatedData    = ReportingManagerMaster::where(['_id'=>$req->id])->update([
+            'name' => $req->reportingManagerName,
+        ]);
+
+        if($updatedData){
+            $success    = 'success';
+            $messages   = 'Update successfully';
+        } else {
+            $success    = 'failed';
+            $messages   = 'somthing went wrong';
+        }
+
+        $response = [
+            'success'       => $success,
+            'message'       => $messages
+            //'data'       => $req->departmentArray
+        ];
+
+        return response()->json($response);
+    }
+
+    public function deleteReportingManager(Request $req){
+        $deletedData    = ReportingManagerMaster::where(['_id'=>$req->id])->update([
+            'status' => 'D',
+        ]);
+
+        if($deletedData){
+            $success    = 'success';
+            $messages   = 'Deleted successfully';
+        } else {
+            $success    = 'failed';
+            $messages   = 'somthing went wrong';
+        }
+
+        $response = [
+            'success'       => $success,
+            'message'       => $messages
+            //'data'       => $req->departmentArray
+        ];
+
+        return response()->json($response);
+    }
+
     public function getEducationMasterList(Request $req){
         $educationList  = EducationMaster::where('company_id', $req->company_id)->where('status', 'A')->get();
         $response       = [
             'success'        => 'success',
             'educationList'  => $educationList
+        ];
+
+        return response()->json($response);
+    }
+
+    public function addEducation(Request $req){
+
+        $educationName         = $req->educationName;
+        if($educationName){
+            $insert              = new EducationMaster;
+            $insert->company_id  = $req->company_id;
+            $insert->name        = $educationName;
+            $insert->status      = 'A';
+            $insert->session     = '';
+            $insert->ip_address  = $req->ipAddress;
+            $insertedData        = $insert->save();
+        }
+
+        if($insertedData){
+            $success    = 'success';
+            $messages   = 'Created successfully';
+        } else {
+            $success    = 'failed';
+            $messages   = 'somthing went wrong';
+        }
+
+        $response = [
+            'success'       => $success,
+            'message'       => $messages
+            //'data'       => $req->departmentArray
+        ];
+
+        return response()->json($response);
+    }
+
+    public function editEducation(Request $req){
+        $updatedData    = EducationMaster::where(['_id'=>$req->id])->update([
+            'name' => $req->educationName,
+        ]);
+
+        if($updatedData){
+            $success    = 'success';
+            $messages   = 'Update successfully';
+        } else {
+            $success    = 'failed';
+            $messages   = 'somthing went wrong';
+        }
+
+        $response = [
+            'success'       => $success,
+            'message'       => $messages
+            //'data'       => $req->departmentArray
+        ];
+
+        return response()->json($response);
+    }
+
+    public function deleteEducation(Request $req){
+        $deletedData    = EducationMaster::where(['_id'=>$req->id])->update([
+            'status' => 'D',
+        ]);
+
+        if($deletedData){
+            $success    = 'success';
+            $messages   = 'Deleted successfully';
+        } else {
+            $success    = 'failed';
+            $messages   = 'somthing went wrong';
+        }
+
+        $response = [
+            'success'       => $success,
+            'message'       => $messages
+            //'data'       => $req->departmentArray
         ];
 
         return response()->json($response);

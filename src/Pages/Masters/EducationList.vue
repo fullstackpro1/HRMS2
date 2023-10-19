@@ -2,6 +2,37 @@
     <AdminLayout>
         <section class="grid grid-cols-7">
             <div class="col-span-5 py-2 px-10">
+                <div class="mt-12" v-if="addEducationDiv">
+                    <div class="border rounded-lg py-7 px-8">
+                        <div class="flex justify-between">
+                            <p class="font-semibold text-xl text-neutral-800">Add Education</p>
+                        </div>
+                        <div class=" overflow-x-auto sm:rounded-lg pt-5">
+                            <form v-on:submit.prevent="submitForm" ref="form" name="form">
+                                <div class="addNewBox1" >
+                                    <div class="addNewSub" >
+                                        <div class="addNewFirst adnright" >
+                                            <label>Education Name:</label>
+                                            <input class="addNewInput" type="text" v-model="educationName" placeholder="Education Name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pt-4 text-right">
+                                    <button type="button" class="ml-auto mr-2 btn-gray-light" @click="this.addEducationDiv = false">
+                                        <span class="pr-2">
+                                            Cancel 
+                                        </span>
+                                    </button>
+                                    <button type="submit" class=" btn-primary-light flex items-center">
+                                        <span class="pr-2">
+                                            Submit 
+                                        </span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 <div class="mt-12">
                     <div class="border rounded-lg py-7 px-8">
                         <div class="flex justify-between">
@@ -20,16 +51,13 @@
                                     </span>
                                 </button> -->
                                
-                                <button class="ml-3 btn-primary-light flex items-center">
+                                <button class="ml-3 btn-primary-light flex items-center" @click="this.addEducationDiv = true">
                                     <!-- <span>
                                         <ArrowDownTrayIcon class="w-4 h-4"/>
                                     </span> -->
-                                    <router-link to="/add-education" @click="this.isSidebar = true">
                                         <span class="pl-2">
                                             Add Education
                                         </span>
-                                    </router-link>
-                                    
                                 </button>
                                 <!-- </button> -->
                             </div>
@@ -44,36 +72,51 @@
                                         <th scope="col" class="px-6 py-3 font-semibold">
                                             Education Name
                                         </th>
-                                        <!-- <th scope="col" class="px-6 py-3 font-semibold">
-                                            Country Code
-                                        </th> -->
-                                        <!-- <th scope="col" class="px-6 py-3 font-semibold">
+                                        <th scope="col" class="px-6 py-3 font-semibold">
                                             Status
-                                        </th> -->
-                                        <!-- <th scope="col" class="px-6 py-3 font-semibold">
+                                        </th>
+                                        <th scope="col" class="px-6 py-3 font-semibold">
                                             Action
-                                        </th> -->
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="(education,index) in educationList" :key="education._id" class="bg-white border-b">
+                                    <tr v-for="(education,index) in educationList" :key="education._id" :class="(education.editDiv)? 'update':''" class="bg-white border-b">
                                         <td scope="row" class="px-6 py-4 font-medium text-neutral-700 whitespace-nowrap">
                                             #{{ index+1 }}
                                         </td>
                                         <td class="px-6 py-4">
-                                            <div class="flex items-center">{{ education.name }}</div>
+                                            <div v-if="!education.editDiv" class="flex items-center">{{ education.name }}</div>
+                                            <div v-else class="flex items-center">
+                                                <input type="text" v-model="education.name" class="form-control" placeholder="Enter Education Name"/>
+                                            </div>
                                         </td>
-                                        <!-- <td class="px-6 py-4">
-                                            <div class="flex items-center">{{ country.code }}</div>
-                                        </td> -->
-                                        <!-- <td class="px-6 py-4">
-                                            {{ country.status }}
-                                        </td> -->
-                                       
-                                        <!-- <td class="px-6 py-4">
-                                            <span class="border rounded-3xl px-3 py-1.5 text-xs inline-block border-orange-200 bg-orange-50 text-orange-600">Automated</span>
-                                            
-                                        </td> -->
+                                        <td class="px-6 py-4">
+                                            <b  :class="(education.status=='A')? 'green':'red'">{{ (education.status=='A')? 'Active':'Inactive'}}</b>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <button v-if="!education.editDiv" type="button" v-on:click="clickToEdit(education)" class="border mr-2 rounded-3xl px-3 py-1.5 text-xs inline-block border-orange-200 bg-orange-50 text-orange-600">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                                </svg>
+                                            </button>
+                                            <button v-if="!education.editDiv" type="button" @click="deleteEducation(education._id)" class="border rounded-3xl px-3 py-1.5 text-xs inline-block border-orange-200 bg-orange-50 text-orange-600">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                                                </svg>
+                                            </button>
+                                            <button v-if="education.editDiv" v-on:click="editEducation(education._id,education.name),clickToEdit(education)" class="border mr-2 rounded-3xl px-3 py-1.5 text-xs inline-block border-orange-200 bg-orange-50 text-orange-600">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                                                </svg>
+
+                                            </button>
+                                            <button v-if="education.editDiv" v-on:click="clickToEdit(education)" class="border rounded-3xl px-3 py-1.5 text-xs inline-block border-orange-200 bg-orange-50 text-orange-600">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                                </svg>
+                                            </button>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -121,6 +164,7 @@
             return {
                 storage:storage,
                 educationList: [],
+                addEducationDiv:false
             }
         },
         created(){
@@ -136,6 +180,58 @@
                     this.educationList =  response.data.educationList;
                     console.log("EDUCATION LIST:: ",response.data);
                 })
+            },
+            async submitForm() {
+                const formData = {
+                    "company_id":this.storage.companyDetails._id,
+                    "educationName":this.educationName,
+                    "ipAddress": this.storage.ipAddress
+                };
+                await axios.post(BASE_URL + '/add-education',formData)
+                .then((response)=>{
+                    //this.stateList =  response.data.statelist;
+                    console.log("DEPARTMENT DATA:: ",response.data);
+                    this.addEducationNameDiv = false;
+                    this.educationName = '';
+                    this.getEducationList();
+                })
+            },
+            clickToEdit(education){
+                //this.editDiv[index] = true;
+                education.editDiv = !education.editDiv; // Toggle the editable stat
+            },
+            async editEducation(id,name){
+                // if (this.addNewDepartment) {
+                    const formData = {
+                        "id": id,
+                        "educationName": name
+                    };
+                    console.log("data:",formData);
+                    await axios.put(BASE_URL + '/edit-education',formData)
+                    .then((response)=>{
+                        console.log(response.data);
+                        //department.editDiv = false;
+                        this.getEducationList();
+                    })
+                // } else {
+                //     console.log("addNewDepartment: must be value");
+                // }
+            },
+            async deleteEducation(id){
+                if (id) {
+                    const formData = {
+                        "id": id
+                    };
+                    console.log("data:",formData);
+                    await axios.post(BASE_URL + '/delete-education',formData)
+                    .then((response)=>{
+                        //this.departmentList;
+                        console.log("DELETE RES",response.data);
+                        this.getEducationList();
+                    })
+                } else {
+                    console.log("addNewDepartment: must be value");
+                }
             },
         }
     }

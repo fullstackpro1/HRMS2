@@ -36,9 +36,9 @@ class CompanyDesignationController extends Controller
     }
 
     public function addDesignation(Request $req){
-        
+
         $designationArray         = $req->designationArray;
-        
+
         if($designationArray>0){
             foreach ($designationArray as $key => $value) {
                 if($value['designationName']!=''){
@@ -56,7 +56,43 @@ class CompanyDesignationController extends Controller
                 }
             }
         }
-        
+
+        if($insertedData){
+            $success    = 'success';
+            $messages   = 'Created successfully';
+        } else {
+            $success    = 'failed';
+            $messages   = 'somthing went wrong';
+        }
+
+        $response = [
+            'success'       => $success,
+            'message'       => $messages
+            //'data'       => $req->designationArray
+        ];
+
+        return response()->json($response);
+    }
+
+    public function addDesignation2(Request $req){
+
+        $designationName         = $req->designationName;
+        $departmentId            = $req->departmentName;
+
+        if($designationName && $departmentId){
+            $insert              = new Designation;
+            $insert->company_id  = $req->company_id;
+            $insert->departmentId= $departmentId;
+            $insert->departmentName= $this->getDepartmentIdByName($departmentId);
+            $insert->name        = $designationName;
+            $insert->status      = 'A';
+            $insert->session     = '';
+            $insert->ip_address  = $req->ipAddress;
+            $insertedData        = $insert->save();
+        } else {
+            $insertedData        = false;
+        }
+
         if($insertedData){
             $success    = 'success';
             $messages   = 'Created successfully';
@@ -122,7 +158,7 @@ class CompanyDesignationController extends Controller
 
     public function getDepartmentIdByName($departmentId){
         $designationList = Department::where('_id', $departmentId)->where('status', 'A')->get();
-        
+
         return $designationList[0]->name;
     }
     public function getDepartmentWiseDesignationList(Request $req){
@@ -139,14 +175,14 @@ class CompanyDesignationController extends Controller
 
     public function insertDesignation(Request $req){
         $filePathDesignation = storage_path('designation.json');
-        
+
         if (File::exists($filePathDesignation)) {
             $jsonContent = File::get($filePathDesignation);
             $designations = json_decode($jsonContent, true);
             //return response()->json(['data'=>$dataArray]);
         }
 
-       
+
         $departmentAray = Department::where("company_id",$req->company_id)->where("status","A")->get();
         $count = 0;
         $data = array();
