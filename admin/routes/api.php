@@ -95,3 +95,4 @@ Route::post("delete-designation",[CompanyDesignationController::class,'deleteDes
 Route::post("insert-designation",[CompanyDesignationController::class,'insertDesignation']);
 
 Route::post("department-wise-designation-list",[CompanyDesignationController::class,'getDepartmentWiseDesignationList']);
+////////////////////////////
