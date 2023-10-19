@@ -96,3 +96,4 @@ Route::post("insert-designation",[CompanyDesignationController::class,'insertDes
 
 Route::post("department-wise-designation-list",[CompanyDesignationController::class,'getDepartmentWiseDesignationList']);
 ////////////////////////////
+////////////////////////////////
