@@ -5,7 +5,7 @@
                 <div class="mt-12" >
                     <div class="border rounded-lg py-7 px-8">
                         <div class="flex justify-between">
-                            <p class="font-semibold text-xl text-neutral-800">Leave Setting</p>
+                            <p class="font-semibold text-xl text-neutral-800">Payroll Setting</p>
                         </div>
                         <div class=" overflow-x-auto sm:rounded-lg pt-5">
                             <form v-on:submit.prevent="submitForm" ref="form" name="form">
@@ -52,7 +52,7 @@
 
 
     export default {
-        name: 'LeaveSetting',
+        name: 'PayrollSetting',
         components:{
             AdminLayout,
             // DropDown,

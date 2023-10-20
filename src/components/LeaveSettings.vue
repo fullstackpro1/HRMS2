@@ -303,13 +303,13 @@
             </div>
         </div>
         <div class="pt-5" v-if="addLeaveForm">
-        <button 
-            type="submit"
-            class="btn-primary-light"
-        >
-            Submit Leave
-        </button>
-    </div>
+            <button 
+                type="submit"
+                class="btn-primary-light"
+            >
+                Submit Leave
+            </button>
+        </div>
     </form>
     <div class="flex justify-between pt-8">
         <button 

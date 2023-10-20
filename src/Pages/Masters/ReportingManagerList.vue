@@ -51,7 +51,7 @@
                                     </span>
                                 </button> -->
                                
-                                <button class="ml-3 btn-primary-light flex items-center"  @click="this.addReportingManagerDiv = true">
+                                <button v-if="!addReportingManagerDiv" class="ml-3 btn-primary-light flex items-center"  @click="this.addReportingManagerDiv = true">
                                     <!-- <span>
                                         <ArrowDownTrayIcon class="w-4 h-4"/>
                                     </span> -->

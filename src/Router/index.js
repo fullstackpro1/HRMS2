@@ -17,6 +17,13 @@ import DesignationList from "../Pages/Masters/DesignationList.vue";
 import ReportingManagerList from "../Pages/Masters/ReportingManagerList.vue";
 import EducationList from "../Pages/Masters/EducationList.vue";
 
+import AttendanceSetting from "../Pages/Settings/AttendanceSetting.vue";
+import GeneralSetting from "../Pages/Settings/GeneralSetting.vue";
+import OrganizationSetting from "../Pages/Settings/OrganizationSetting.vue";
+import LeaveSetting from "../Pages/Settings/LeaveSetting.vue";
+import PayrollSetting from "../Pages/Settings/PayrollSetting.vue";
+import RoleAllocationSetting from "../Pages/Settings/RoleAllocationSetting.vue";
+
 
 const routes = [
     {
@@ -105,6 +112,38 @@ const routes = [
         component: EducationList,
         path: "/education-list",
     },
+    {
+        name: "AttendanceSetting",
+        component: AttendanceSetting,
+        path: "/attendance-setting",
+    },
+    {
+        name: "GeneralSetting",
+        component: GeneralSetting,
+        path: "/general-setting",
+    },
+    {
+        name: "OrganizationSetting",
+        component: OrganizationSetting,
+        path: "/organization-setting",
+    },
+    {
+        name: "LeaveSetting",
+        component: LeaveSetting,
+        path: "/leave-setting",
+    },
+    {
+        name: "PayrollSetting",
+        component: PayrollSetting,
+        path: "/payroll-setting",
+    },
+    {
+        name: "RoleAllocationSetting",
+        component: RoleAllocationSetting,
+        path: "/role-allocation-setting",
+    },
+
+
 ]
 
 

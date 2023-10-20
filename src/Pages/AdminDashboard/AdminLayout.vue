@@ -178,7 +178,7 @@
                         >
                             <ul class="pl-10" v-if="this.firstSideBarDrop === 'Settings'">
                                 <li>
-                                    <router-link class="flex text-sm flex-nowrap text-white/60 flex-1 p-1.5 items-center hover:text-white transition-all" to="/dashboard/dc" @click="this.isSidebar = true">
+                                    <router-link class="flex text-sm flex-nowrap text-white/60 flex-1 p-1.5 items-center hover:text-white transition-all" to="/general-setting" @click="this.isSidebar = true">
                                         <span>
                                             General Settings
                                         </span>
@@ -186,7 +186,7 @@
                                 </li>
 
                                 <li>
-                                    <router-link class="flex text-sm flex-nowrap text-white/60 flex-1 p-1.5 items-center hover:text-white transition-all" to="/dashboard/dc" @click="this.isSidebar = true">
+                                    <router-link class="flex text-sm flex-nowrap text-white/60 flex-1 p-1.5 items-center hover:text-white transition-all" to="/organization-setting" @click="this.isSidebar = true">
                                         <span>
                                             Organization Settings
                                         </span>
@@ -194,7 +194,7 @@
                                 </li>
 
                                 <li>
-                                    <router-link class="flex text-sm flex-nowrap text-white/60 flex-1 p-1.5 items-center hover:text-white transition-all" to="/dashboard/dc" @click="this.isSidebar = true">
+                                    <router-link class="flex text-sm flex-nowrap text-white/60 flex-1 p-1.5 items-center hover:text-white transition-all" to="/role-allocation-setting" @click="this.isSidebar = true">
                                         <span>
                                             Role Allocation Settings
                                         </span>
@@ -202,7 +202,7 @@
                                 </li>
 
                                 <li>
-                                    <router-link class="flex text-sm flex-nowrap text-white/60 flex-1 p-1.5 items-center hover:text-white transition-all" to="/dashboard/dc" @click="this.isSidebar = true">
+                                    <router-link class="flex text-sm flex-nowrap text-white/60 flex-1 p-1.5 items-center hover:text-white transition-all" to="/attendance-setting" @click="this.isSidebar = true">
                                         <span>
                                             Attendance Settings
                                         </span>
@@ -210,7 +210,7 @@
                                 </li>
 
                                 <li>
-                                    <router-link class="flex text-sm flex-nowrap text-white/60 flex-1 p-1.5 items-center hover:text-white transition-all" to="/dashboard/dc" @click="this.isSidebar = true">
+                                    <router-link class="flex text-sm flex-nowrap text-white/60 flex-1 p-1.5 items-center hover:text-white transition-all" to="/leave-setting" @click="this.isSidebar = true">
                                         <span>
                                             Leave Settings
                                         </span>
@@ -218,7 +218,7 @@
                                 </li>
 
                                 <li>
-                                    <router-link class="flex text-sm flex-nowrap text-white/60 flex-1 p-1.5 items-center hover:text-white transition-all" to="/dashboard/dc" @click="this.isSidebar = true">
+                                    <router-link class="flex text-sm flex-nowrap text-white/60 flex-1 p-1.5 items-center hover:text-white transition-all" to="/payroll-setting" @click="this.isSidebar = true">
                                         <span>
                                             Payroll Settings
                                         </span>
