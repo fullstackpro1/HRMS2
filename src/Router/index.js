@@ -23,6 +23,7 @@ import OrganizationSetting from "../Pages/Settings/OrganizationSetting.vue";
 import LeaveSetting from "../Pages/Settings/LeaveSetting.vue";
 import PayrollSetting from "../Pages/Settings/PayrollSetting.vue";
 import RoleAllocationSetting from "../Pages/Settings/RoleAllocationSetting.vue";
+import EmployeeList from "../Pages/Employee/EmployeeList.vue";
 
 
 const routes = [
@@ -54,7 +55,7 @@ const routes = [
     {
         name: "Add-new-employee",
         component: Addnewemployee,
-        path: "/addemployee",
+        path: "/add-employee",
     },
     {
         name: "VerifyEmail",
@@ -142,7 +143,11 @@ const routes = [
         component: RoleAllocationSetting,
         path: "/role-allocation-setting",
     },
-
+    {
+        name: "EmployeeList",
+        component: EmployeeList,
+        path: "/employee-list",
+    },
 
 ]
 

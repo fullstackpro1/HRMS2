@@ -2,29 +2,14 @@
     <AdminLayout>
         <section class="grid grid-cols-7">
             <div class="col-span-5 py-2 px-10">
-                <div class=" pt-10" >
-                    <div class="flex justify-between items-end pb-8 pt-12">
-                        <div>
-                            <h2 class="text-3xl font-semibold text-neutral-900">Add Employee</h2>
+                <div class="mt-12" >
+                    <div class="border rounded-lg py-7 px-8">
+                        <div class="flex justify-between">
+                            <p class="font-semibold text-xl text-neutral-800">Add Employee</p>
                         </div>
-                        <!-- <div>
-                            <button @click="HandelCategoryModal" class="ml-auto btn-primary">Add Category</button>
-                        </div> -->
-                    </div>
-                    <form v-on:submit.prevent="submitForm" ref="form" name="form">
-                        <div class="leaveBox">
-                            <div class="leaveRightBox">
-                                <div class="leaveRightTop">
-                                <div v-if="errormessage1 != ''" class="errormessage">
-                                    {{ errormessage1 }}
-                                </div>
-                                <div v-if="successmessage1 != ''" class="successmessage">
-                                    {{ successmessage1 }}
-                                </div>
-                                <!-- <div class="main-title text-center">
-                                    <h2 class="fs-3">Add New Employee</h2>
-                                    
-                                </div> -->
+                        <div class=" overflow-x-auto sm:rounded-lg pt-5">
+                            <form v-on:submit.prevent="submitForm" ref="form" name="form">
+                               
                                 <div class="addNewBox" v-for="(data, index) in formList" :key="index">
                                     <!-- <p>{{ data }}</p> -->
                                     <div class="addNewSub" v-for="(item, index) in data.items" :key="index">
@@ -226,15 +211,13 @@
                                 </div>
                                 <div class="addNewBox" >
                                     <div class="">
-                                        <button class="ml-auto mr-2 btn-gray-light" >Back</button>
-                                        
-                                        <button class="ml-auto btn-primary" :disabled="buttonclick">Save</button>
+                                        <button type="button" class="ml-auto mr-2 btn-gray-light" >Back</button>
+                                        <button type="submit" class="ml-auto btn-primary" :disabled="buttonclick">Save</button>
                                     </div>
                                 </div>
-                                </div>
-                            </div>
+                            </form>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
             <RightSideBar/>
